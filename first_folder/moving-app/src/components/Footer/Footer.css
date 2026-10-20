@@ -1,0 +1,260 @@
+/* Base Footer Styling */
+.footer-section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: inherit;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================
+   TOP VALUE BADGES BAR
+   ========================================== */
+.footer-top-bar {
+  background-color: #1e293b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.75rem 0;
+}
+
+.top-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.value-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge-icon {
+  font-size: 2rem;
+  color: #ff5a36;
+  flex-shrink: 0;
+}
+
+.value-badge h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.2rem 0;
+}
+
+.value-badge p {
+  font-size: 16px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ==========================================
+   MAIN FOOTER CONTENT GRID
+   ========================================== */
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand Column */
+.footer-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f8fafc;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.footer-logo span {
+  color: #ff5a36;
+}
+
+.brand-desc {
+  color: #94a3b8;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.license-info {
+  display: flex;
+  gap: 1rem;
+  font-size: 18px;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: fit-content;
+}
+
+/* Column Titles */
+.footer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 30px;
+  height: 2px;
+  background-color: #ff5a36;
+}
+
+/* Link Lists */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 17px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #ff5a36;
+  transform: translateX(3px);
+}
+
+/* Contact Column */
+.contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.contact-icon {
+  color: #ff5a36;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.contact-info-list a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-info-list a:hover {
+  color: #f8fafc;
+}
+
+.footer-cta-btn {
+  display: inline-block;
+  background-color: #ff5a36;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 17px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-cta-btn:hover {
+  background-color: #e04825;
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   BOTTOM COPYRIGHT BAR
+   ========================================== */
+.footer-bottom {
+  background-color: #090d16;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 0;
+  font-size: 16px;
+  color: #cdd6e3;
+}
+
+.bottom-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.bottom-links a {
+  color: #cdd6e3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bottom-links a:hover {
+  color: #94a3b8;
+}
+
+/* ==========================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================== */
+@media (max-width: 992px) {
+  .top-bar-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bottom-flex {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .bottom-links {
+    justify-content: center;
+  }
+}

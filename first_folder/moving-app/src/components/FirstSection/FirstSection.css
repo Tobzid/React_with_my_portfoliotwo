@@ -1,0 +1,279 @@
+/* Section Container with Background Image */
+.about-stats-section {
+  position: relative;
+  background-image: url('/images/movingoneimage.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 6rem 1.5rem; /* Increased top and bottom spacing around the cards */
+  overflow: hidden;
+}
+
+/* Light background overlay to softly dim the image */
+.stats-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.40) 0%, rgba(248, 250, 252, 0.25) 100%);
+  z-index: 1;
+}
+
+/* Flexbox Layout */
+.stats-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch; /* Keeps both cards aligned to the exact same vertical height */
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* LEFT PART STYLING (Slightly Reduced Size) */
+.stats-left {
+  flex: 0.85; /* Reduced left card width slightly */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  padding: 1.75rem 1.85rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 90, 54, 0.12);
+  color: #ff5a36;
+  border: 1px solid rgba(255, 90, 54, 0.3);
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  width: fit-content;
+}
+
+.stats-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.4px;
+  color: #0f172a;
+}
+
+.stats-title span {
+  color: #ff5a36;
+}
+
+.stats-description {
+  font-size: 1.2rem;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 1.15rem;
+}
+
+.stats-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.stats-check-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.check-icon {
+  color: #ff5a36;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stats-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ff5a36;
+  color: #ffffff;
+  padding: 0.65rem 1.15rem;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e04825;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
+  padding: 0.65rem 1.15rem;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #1e293b;
+}
+
+/* RIGHT PART FORM CARD STYLING (Slightly Increased Size) */
+.stats-right {
+  flex: 1.15; /* Increased right card width slightly */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-rating-card {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.25);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quote-header-icon {
+  font-size: 1.35rem;
+  color: #ff5a36;
+}
+
+.quote-main-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.rating-pill {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 0.3rem 0.65rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.star-icon {
+  color: #fbbf24;
+}
+
+.card-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1rem 0;
+}
+
+/* Form Layout */
+.quick-quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.input-group label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.input-group input,
+.input-group select {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #ff5a36;
+}
+
+.form-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ff5a36;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 0.35rem;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}

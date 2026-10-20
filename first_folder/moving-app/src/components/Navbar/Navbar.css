@@ -1,0 +1,203 @@
+/* Base Header Styling */
+.navbar-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #f8fafc;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.navbar-logo span {
+  color: #ff5a36;
+}
+
+/* Desktop Menu Links */
+.nav-menu-desktop {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 22px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #f8fafc;
+}
+
+/* Desktop CTA Buttons */
+.navbar-cta-desktop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phone-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.quote-btn {
+  background: #ff5a36;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.quote-btn:hover {
+  background: #e04825;
+  transform: translateY(-1px);
+}
+
+/* Hamburger Button (Hidden on Desktop) */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ==========================================
+   MOBILE LEFT-SIDE DRAWER STYLES (≤768px)
+   ========================================== */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Hidden off-screen to the left */
+  width: 280px;
+  height: 100vh;
+  background: #0f172a;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-drawer.open {
+  left: 0; /* Slides in from the left */
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.drawer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  color: #ff5a36;
+  font-weight: 600;
+}
+
+.drawer-cta {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.drawer-cta .phone-btn,
+.drawer-cta .quote-btn {
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* Media Query Rules */
+@media (max-width: 768px) {
+  .nav-menu-desktop,
+  .navbar-cta-desktop {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+}
