@@ -20,7 +20,7 @@ app.post('/api/enquiry', async (req, res) => {
   try {
     await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
-      to: 'tobzid2013@@gmail.com', // <-- Put your personal/business email here!
+      to: 'tobzid2013@gmail.com', // <-- Put your personal/business email here!
       reply_to: email,
       subject: `New Moving Enquiry from ${name}`,
       html: `
