@@ -40,5 +40,34 @@ app.post('/api/enquiry', async (req, res) => {
   }
 });
 
+
+app.post('/api/enquiry', async (req, res) => {
+  const { name, email, phone, fromZip, toZip, moveSize, message } = req.body;
+
+  try {
+    await resend.emails.send({
+      from: 'Quotes <onboarding@resend.dev>', // or your verified domain
+      to: 'tobzid2013@gmail.com', // Replace with your email address
+      subject: `New Moving Lead: ${moveSize || 'General Enquiry'}`,
+      html: `
+        <h2>New Enquiry Received</h2>
+        ${name ? `<p><strong>Name:</strong> ${name}</p>` : ''}
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        ${fromZip ? `<p><strong>From ZIP:</strong> ${fromZip}</p>` : ''}
+        ${toZip ? `<p><strong>To ZIP:</strong> ${toZip}</p>` : ''}
+        ${moveSize ? `<p><strong>Move Size:</strong> ${moveSize}</p>` : ''}
+        ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+      `,
+    });
+
+    res.status(200).json({ success: true, message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
