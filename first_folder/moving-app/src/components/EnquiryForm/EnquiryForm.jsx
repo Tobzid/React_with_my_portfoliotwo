@@ -1,11 +1,7 @@
 import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { db } from './firebase';
+import { db } from '../firebase';
 import { ref, push } from 'firebase/database';
-
-/*
-I am using emailJs for this and I installed it on with this npm install @emailjs/browser
-*/ 
+import './EnquiryForm.css';
 
 const EnquiryForm = () => {
   const formRef = useRef();
@@ -22,46 +18,46 @@ const EnquiryForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, error: '' });
 
-    // Optional: Save to Firebase first
-    const enquiriesRef = ref(db, 'enquiries');
-    push(enquiriesRef, {
-      ...formData,
-      timestamp: new Date().toISOString()
-    });
+    try {
+      // 1. Save to Firebase database
+      const enquiriesRef = ref(db, 'enquiries');
+      await push(enquiriesRef, {
+        ...formData,
+        timestamp: new Date().toISOString()
+      });
 
-    // Send email directly to your inbox via EmailJS
-    emailjs.send(
-      'YOUR_SERVICE_ID',     // Replace with your EmailJS Service ID
-      'YOUR_TEMPLATE_ID',    // Replace with your EmailJS Template ID
-      {
-        from_name: formData.name,
-        reply_to: formData.email,
-        phone_number: formData.phone,
-        message: formData.message,
-      },
-      'YOUR_PUBLIC_KEY'      // Replace with your EmailJS Public Key
-    )
-    .then(() => {
+      // 2. Send email via your Render backend (/api/enquiry route)
+      const response = await fetch('https://react-with-my-portfoliotwo.onrender.com/api/enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email via backend server');
+      }
+
       setStatus({ loading: false, success: true, error: '' });
       setFormData({ name: '', email: '', phone: '', message: '' });
-    })
-    .catch((err) => {
-      console.error('Email send error:', err);
+    } catch (err) {
+      console.error('Submission error:', err);
       setStatus({ loading: false, success: false, error: 'Failed to send message. Please try again.' });
-    });
+    }
   };
 
   return (
-    <div style={styles.container}>
+    <div className="enquiry-container">
       <h2>Get a Quote / Send an Enquiry</h2>
-      {status.success && <p style={styles.success}>Message sent to our team successfully!</p>}
-      {status.error && <p style={styles.error}>{status.error}</p>}
+      {status.success && <p className="enquiry-success">Message sent to our team successfully!</p>}
+      {status.error && <p className="enquiry-error">{status.error}</p>}
 
-      <form ref={formRef} onSubmit={handleSubmit} style={styles.form}>
+      <form ref={formRef} onSubmit={handleSubmit} className="enquiry-form">
         <input
           type="text"
           name="name"
@@ -69,7 +65,7 @@ const EnquiryForm = () => {
           value={formData.name}
           onChange={handleChange}
           required
-          style={styles.input}
+          className="enquiry-input"
         />
         <input
           type="email"
@@ -78,7 +74,7 @@ const EnquiryForm = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          style={styles.input}
+          className="enquiry-input"
         />
         <input
           type="tel"
@@ -87,7 +83,7 @@ const EnquiryForm = () => {
           value={formData.phone}
           onChange={handleChange}
           required
-          style={styles.input}
+          className="enquiry-input"
         />
         <textarea
           name="message"
@@ -96,23 +92,14 @@ const EnquiryForm = () => {
           value={formData.message}
           onChange={handleChange}
           required
-          style={styles.input}
+          className="enquiry-input"
         />
-        <button type="submit" disabled={status.loading} style={styles.button}>
+        <button type="submit" disabled={status.loading} className="enquiry-button">
           {status.loading ? 'Sending...' : 'Send Enquiry'}
         </button>
       </form>
     </div>
   );
-};
-
-const styles = {
-  container: { maxWidth: '480px', margin: '20px auto', padding: '20px', borderRadius: '8px', border: '1px solid #ddd' },
-  form: { display: 'flex', flexDirection: 'column', gap: '12px' },
-  input: { padding: '10px', borderRadius: '4px', border: '1px solid #ccc' },
-  button: { padding: '12px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' },
-  success: { color: 'green', fontWeight: 'bold' },
-  error: { color: 'red', fontWeight: 'bold' }
 };
 
 export default EnquiryForm;

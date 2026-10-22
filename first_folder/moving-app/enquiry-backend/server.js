@@ -1,21 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Configure Nodemailer with your email provider credentials
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // or smtp host
-  auth: {
-    user: process.env.EMAIL_USER, // Your receiving email
-    pass: process.env.EMAIL_PASS  // Gmail App Password
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.post('/api/enquiry', async (req, res) => {
   const { name, email, phone, message } = req.body;
@@ -24,23 +17,22 @@ app.post('/api/enquiry', async (req, res) => {
     return res.status(400).json({ success: false, message: 'Missing required fields' });
   }
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.RECEIVER_EMAIL, // Where you want to receive enquiries
-    replyTo: email,
-    subject: `New Moving Enquiry from ${name}`,
-    html: `
-      <h3>New Customer Enquiry</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-    `
-  };
-
   try {
-    await transporter.sendMail(mailOptions);
+    await resend.emails.send({
+      from: 'Acme <onboarding@resend.dev>',
+      to: 'tobzid2013@@gmail.com', // <-- Put your personal/business email here!
+      reply_to: email,
+      subject: `New Moving Enquiry from ${name}`,
+      html: `
+        <h3>New Customer Enquiry</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `
+    });
+
     res.status(200).json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);

@@ -3,10 +3,12 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import AboutStats from './components/FirstSection/FirstSection'
-import WhyChooseUs from './components/WhyChooseUs'
+import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs'
 import ServicesSection from './components/ServicesSection/ServicesSection'
 import ChatWidget from './components/ChatApp/ChatWidget'
 import AdminChat from './components/AdminChat/AdminChat'
+import EnquiryForm from './components/EnquiryForm/EnquiryForm'
+
 
 function App() {
   const [isAdminView, setIsAdminView] = useState(false);
@@ -44,6 +46,7 @@ function App() {
           <WhyChooseUs />
           <ServicesSection />
           <ChatWidget />
+        <EnquiryForm/>
           <Footer />
         </section>
       )}
